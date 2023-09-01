@@ -20,6 +20,9 @@ func apply_upgrade(upgrade: AbilityUpgrade):
 	else:
 		current_upgrades[upgrade.id]["quantity"] += 1
 
+	if current_upgrades[upgrade.id]["quantity"] >= upgrade.max_quantity:
+		upgrade_pool = upgrade_pool.filter(func(_upgrade): return _upgrade.id != upgrade.id)
+
 	GameEvents.emit_ability_upgrade_added(upgrade, current_upgrades)
 
 
@@ -28,6 +31,9 @@ func pick_upgrades():
 	# Any need to duplicate if filter returns a new array?
 	var filtered_upgrades = upgrade_pool.duplicate()
 	for i in 2:
+		if filtered_upgrades.size() == 0:
+			break
+
 		var chosen_upgrade = filtered_upgrades.pick_random() as AbilityUpgrade
 		chosen_upgrades.append(chosen_upgrade)
 		# Any need to filter here if we could shuffle the array and just pick first?

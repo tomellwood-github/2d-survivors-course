@@ -21,3 +21,4 @@ func on_died():
 	entities.add_child(self)
 	global_position = spawn_pos
 	animation_player.play("default")
+	$HitRandomAudioPlayerComponent.play_random()

@@ -6,6 +6,10 @@ var is_moving = false
 @onready var visuals = $Visuals
 
 
+func _ready():
+	$HurtboxComponent.hit.connect(on_hit)
+
+
 func _process(_delta):
 	if is_moving:
 		velocity_component.accelerate_to_player()
@@ -19,3 +23,7 @@ func _process(_delta):
 
 func set_is_moving(moving: bool):
 	is_moving = moving
+
+
+func on_hit():
+	$HitRandomAudioPlayerComponent.play_random()

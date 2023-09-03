@@ -5,6 +5,8 @@ extends Node
 
 var velocity = Vector2.ZERO
 
+var frames_to_max = 0
+
 
 func accelerate_to_player():
 	var owner_node2d = owner as Node2D
@@ -21,7 +23,7 @@ func accelerate_to_player():
 
 func accelerate_in_direction(direction: Vector2):
 	var desired_velocity = direction * max_speed
-	velocity = velocity.lerp(desired_velocity, 1 - exp(-acceleration * get_process_delta_time()))
+	velocity = velocity.lerp(desired_velocity, acceleration * get_process_delta_time())
 
 
 func decelerate():

@@ -11,7 +11,7 @@ func _ready():
 			.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
 
 	get_tree().paused = true
-	%RestartButton.pressed.connect(on_restart_button_pressed)
+	%ContinueButton.pressed.connect(on_continue_button_pressed)
 	%QuitButton.pressed.connect(on_quit_button_pressed)
 
 
@@ -28,12 +28,12 @@ func play_jingle(defeat: bool = false):
 		$VictoryStreamPlayer.play()
 
 
-func on_restart_button_pressed():
-	ScreenTransition.transition()
-	await ScreenTransition.transitioned_halfway
-	get_tree().paused = false
-	get_tree().reload_current_scene()
+func on_continue_button_pressed():
+	ScreenTransition.transition_to_scene("res://scenes/ui/meta_menu.tscn")
 
 
 func on_quit_button_pressed():
-	get_tree().quit()
+	ScreenTransition.transition_to_scene("res://scenes/ui/main_menu.tscn")
+
+func _exit_tree():
+	get_tree().paused = false

@@ -1,0 +1,227 @@
+[gd_scene load_steps=18 format=3 uid="uid://bfruox03raq5p"]
+
+[ext_resource type="Script" path="res://scenes/ui/meta_upgrade_card.gd" id="1_yevfr"]
+[ext_resource type="PackedScene" uid="uid://cq8iroaegc1sh" path="res://scenes/component/random_stream_player_component.tscn" id="2_qgoke"]
+[ext_resource type="AudioStream" uid="uid://bnmy0w1yj5l4b" path="res://assets/audio/switch1.ogg" id="3_5xq86"]
+[ext_resource type="AudioStream" uid="uid://cmtwpjckun4f5" path="res://assets/audio/switch2.ogg" id="4_ekjsb"]
+[ext_resource type="AudioStream" uid="uid://qndraepad2tt" path="res://assets/audio/switch3.ogg" id="5_4f111"]
+[ext_resource type="AudioStream" uid="uid://d0ronxdnt1p46" path="res://assets/audio/switch4.ogg" id="6_kn3sc"]
+[ext_resource type="AudioStream" uid="uid://bqwltdtypedlp" path="res://assets/audio/switch5.ogg" id="7_4vmrf"]
+[ext_resource type="AudioStream" uid="uid://c6iwwmdpisov8" path="res://assets/audio/switch6.ogg" id="8_4g6ig"]
+[ext_resource type="AudioStream" uid="uid://c1mdl0tjo7v4l" path="res://assets/audio/switch7.ogg" id="9_8t363"]
+[ext_resource type="AudioStream" uid="uid://bp6hsvqstv27k" path="res://assets/audio/switch8.ogg" id="10_igfq1"]
+[ext_resource type="AudioStream" uid="uid://djmladofih77l" path="res://assets/audio/switch9.ogg" id="11_pedfp"]
+[ext_resource type="AudioStream" uid="uid://bc68aduwbf3oy" path="res://assets/audio/switch10.ogg" id="12_737fx"]
+[ext_resource type="Texture2D" uid="uid://dgra2u0amgsod" path="res://scenes/game_object/experience_vial/experience_vial.png" id="13_f6hb8"]
+
+[sub_resource type="Animation" id="Animation_c6b4h"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_wv0i8"]
+resource_name = "selected"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.4),
+"transitions": PackedFloat32Array(1, 2, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 1.2), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.174533, 0.0872665, 0.0]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ClickPlayerComponent")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"play_random"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gcdtx"]
+_data = {
+"RESET": SubResource("Animation_c6b4h"),
+"selected": SubResource("Animation_wv0i8")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l0cgg"]
+content_margin_top = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.458824, 0.890196, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.8, 0.8, 0.8, 0)
+
+[node name="MetaUpgradeCard" type="PanelContainer" groups=["meta_upgrade_card"]]
+custom_minimum_size = Vector2(170, 0)
+pivot_offset = Vector2(75, 75)
+script = ExtResource("1_yevfr")
+
+[node name="ClickPlayerComponent" parent="." instance=ExtResource("2_qgoke")]
+streams = Array[AudioStream]([ExtResource("3_5xq86"), ExtResource("4_ekjsb"), ExtResource("5_4f111"), ExtResource("6_kn3sc"), ExtResource("7_4vmrf"), ExtResource("8_4g6ig"), ExtResource("9_8t363"), ExtResource("10_igfq1"), ExtResource("11_pedfp"), ExtResource("12_737fx")])
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_gcdtx")
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 12
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_type_variation = &"AlternatePanelContainer"
+
+[node name="NameLabel" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"BlueOutlineLabel"
+theme_override_font_sizes/font_size = 32
+text = "Sword Quickness"
+horizontal_alignment = 1
+vertical_alignment = 2
+autowrap_mode = 2
+
+[node name="DescriptionLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"BlueOutlineLabel"
+text = "Increases sword attack rate by 10%"
+autowrap_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = -2
+
+[node name="TextMarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_right = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/VBoxContainer/TextMarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="ProgressLabel" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/TextMarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 8
+theme_type_variation = &"BlueOutlineLabel"
+text = "6/100"
+vertical_alignment = 2
+
+[node name="CountLabel" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/TextMarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+theme_type_variation = &"BlueOutlineLabel"
+text = "x0
+"
+vertical_alignment = 2
+
+[node name="ProgressMarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="MarginContainer/VBoxContainer/VBoxContainer/ProgressMarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_l0cgg")
+max_value = 1.0
+value = 0.5
+show_percentage = false
+
+[node name="Control" type="Control" parent="MarginContainer/VBoxContainer/VBoxContainer/ProgressMarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/VBoxContainer/ProgressMarginContainer/Control"]
+layout_mode = 2
+offset_left = -8.0
+offset_top = -5.0
+offset_right = 8.0
+offset_bottom = 11.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_filter = 2
+texture = ExtResource("13_f6hb8")
+
+[node name="PurchaseButton" type="Button" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Purchase
+"

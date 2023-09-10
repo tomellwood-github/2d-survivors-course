@@ -6,5 +6,4 @@ void fragment() {
 	vec4 texture_color = texture(TEXTURE, UV);
 	vec4 final_color = mix(texture_color, vec4(texture_color.a), lerp_percent);
 	COLOR = final_color;
-	// Place fragment code here.
 }

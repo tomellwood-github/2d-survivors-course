@@ -79,7 +79,7 @@ _data = {
 "walk": SubResource("Animation_gm3sa")
 }
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_hlgnx"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2vrhn"]
 resource_local_to_scene = true
 shader = ExtResource("6_3oex7")
 shader_parameter/lerp_percent = 0.0
@@ -90,8 +90,8 @@ shader_parameter/lerp_percent = 0.0
 radius = 4.0
 
 [node name="BatEnemy" type="CharacterBody2D" groups=["enemy"]]
-collision_layer = 8
-collision_mask = 9
+collision_layer = 32
+collision_mask = 32
 motion_mode = 1
 script = ExtResource("1_hd62j")
 
@@ -115,7 +115,7 @@ health_component = NodePath("../HealthComponent")
 [node name="HitFlashComponent" parent="." node_paths=PackedStringArray("health_component", "sprite") instance=ExtResource("5_sti6n")]
 health_component = NodePath("../HealthComponent")
 sprite = NodePath("../Visuals/Sprite2D")
-hit_flash_material = SubResource("ShaderMaterial_hlgnx")
+hit_flash_material = SubResource("ShaderMaterial_2vrhn")
 
 [node name="DeathComponent" parent="." node_paths=PackedStringArray("health_component", "sprite") instance=ExtResource("7_47jx0")]
 health_component = NodePath("../HealthComponent")

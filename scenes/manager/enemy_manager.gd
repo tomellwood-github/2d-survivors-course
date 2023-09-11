@@ -52,10 +52,16 @@ func on_timer_timeout():
 	if player == null:
 		return
 
+	var entities_layer = get_tree().get_first_node_in_group("entities_layer")
+	var total_enemies = get_tree().get_nodes_in_group("enemy").size()
+
+	# Keep testing this number for performance
+	if total_enemies > 300:
+		return
+
 	for i in number_to_spawn:
 		var enemy_scene = enemy_table.pick_item()
 		var enemy = enemy_scene.instantiate() as Node2D
-		var entities_layer = get_tree().get_first_node_in_group("entities_layer");
 
 		entities_layer.add_child(enemy)
 		enemy.global_position = get_spawn_position()
@@ -65,8 +71,9 @@ func on_arena_difficulty_increased(arena_difficulty: int):
 	var time_off = min((.1 / 12) * arena_difficulty, .7)
 	timer.wait_time = base_spawn_time - time_off
 
-	if arena_difficulty % 6 == 0:
-		number_to_spawn += 1
+	# Increase number_to_spawn every minute (+1 every 5 seconds), cap at 4
+	if arena_difficulty % 12 == 0:
+		number_to_spawn = min(number_to_spawn + 1, 4)
 
 	if arena_difficulty == 6:
 		enemy_table.add_item(wizard_enemy_scene, 15)

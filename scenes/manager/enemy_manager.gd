@@ -56,7 +56,7 @@ func on_timer_timeout():
 	var total_enemies = get_tree().get_nodes_in_group("enemy").size()
 
 	# Keep testing this number for performance
-	if total_enemies > 300:
+	if total_enemies > 350:
 		return
 
 	for i in number_to_spawn:

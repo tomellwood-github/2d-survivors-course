@@ -79,7 +79,7 @@ _data = {
 "walk": SubResource("Animation_gm3sa")
 }
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_2vrhn"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n3yh3"]
 resource_local_to_scene = true
 shader = ExtResource("6_3oex7")
 shader_parameter/lerp_percent = 0.0
@@ -115,7 +115,7 @@ health_component = NodePath("../HealthComponent")
 [node name="HitFlashComponent" parent="." node_paths=PackedStringArray("health_component", "sprite") instance=ExtResource("5_sti6n")]
 health_component = NodePath("../HealthComponent")
 sprite = NodePath("../Visuals/Sprite2D")
-hit_flash_material = SubResource("ShaderMaterial_2vrhn")
+hit_flash_material = SubResource("ShaderMaterial_n3yh3")
 
 [node name="DeathComponent" parent="." node_paths=PackedStringArray("health_component", "sprite") instance=ExtResource("7_47jx0")]
 health_component = NodePath("../HealthComponent")
@@ -125,6 +125,7 @@ sprite = NodePath("../Visuals/Sprite2D")
 streams = Array[AudioStream]([ExtResource("9_l83h3"), ExtResource("10_g4xxp"), ExtResource("11_lpu31"), ExtResource("12_rfow3"), ExtResource("13_bvus1")])
 
 [node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("14_mjv7k")]
+collision_layer = 64
 health_component = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="AbilityUpgrade" load_steps=2 format=3 uid="uid://bb2r3ovlsj1wy"]
+
+[ext_resource type="Script" path="res://resources/upgardes/ability_upgrade.gd" id="1_x3h1a"]
+
+[resource]
+script = ExtResource("1_x3h1a")
+id = "fireball_lifespan"
+max_quantity = 0
+name = "Fireball Lifespan"
+description = "Increase the number of enemies hit by 1"

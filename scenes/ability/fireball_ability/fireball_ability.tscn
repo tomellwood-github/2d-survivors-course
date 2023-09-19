@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://3s1hd5esix7j"]
+
+[ext_resource type="Script" path="res://scenes/ability/fireball_ability/fireball_ability.gd" id="1_tygpx"]
+[ext_resource type="Texture2D" uid="uid://bmqihi2wj66gt" path="res://scenes/ability/fireball_ability/fireball.png" id="2_ocduw"]
+[ext_resource type="PackedScene" uid="uid://h0r2kscm0jva" path="res://scenes/component/hitbox_component.tscn" id="3_gh384"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_r8tm5"]
+radius = 7.0
+
+[node name="FireballAbility" type="Node2D"]
+script = ExtResource("1_tygpx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_ocduw")
+
+[node name="HitboxComponent" parent="." instance=ExtResource("3_gh384")]
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+shape = SubResource("CircleShape2D_r8tm5")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]

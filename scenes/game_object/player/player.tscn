@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://birtblqd6edu3" path="res://scenes/game_object/player/player.png" id="2_c7frk"]
 [ext_resource type="PackedScene" uid="uid://claurqaxopi6p" path="res://scenes/component/health_component.tscn" id="2_pw8fa"]
 [ext_resource type="PackedScene" uid="uid://bvbo5wea0u6jy" path="res://scenes/component/velocity_component.tscn" id="2_v8t5v"]
-[ext_resource type="PackedScene" uid="uid://cw7p26qroopbl" path="res://scenes/ability/sword_ability_controller/sword_ability_controller.tscn" id="2_y3rud"]
+[ext_resource type="PackedScene" uid="uid://cw7p26qroopbl" path="res://scenes/ability/sword_ability_controller/sword_ability_controller.tscn" id="4_dryp5"]
 [ext_resource type="PackedScene" uid="uid://bush3h5x4t3xm" path="res://scenes/component/random_stream_player_2d_component.tscn" id="5_x7aum"]
 [ext_resource type="AudioStream" uid="uid://cs7741va4sqt" path="res://assets/audio/impactMining_000.ogg" id="6_8c5ii"]
 [ext_resource type="AudioStream" uid="uid://cg2ynsgo86y5r" path="res://assets/audio/impactMining_001.ogg" id="7_14y6a"]
@@ -134,7 +134,7 @@ acceleration = 25.0
 
 [node name="Abilities" type="Node" parent="."]
 
-[node name="SwordAbilityController" parent="Abilities" instance=ExtResource("2_y3rud")]
+[node name="SwordAbilityController" parent="Abilities" instance=ExtResource("4_dryp5")]
 
 [node name="HitRandomStreamPlayer" parent="." instance=ExtResource("5_x7aum")]
 streams = Array[AudioStream]([ExtResource("6_8c5ii"), ExtResource("7_14y6a"), ExtResource("8_hx8b8"), ExtResource("9_gss2n"), ExtResource("10_fwy7l")])
@@ -156,7 +156,6 @@ value = 0.5
 show_percentage = false
 
 [node name="PickupArea2D" type="Area2D" parent="."]
-visible = false
 position = Vector2(0, -5)
 collision_layer = 16
 collision_mask = 0

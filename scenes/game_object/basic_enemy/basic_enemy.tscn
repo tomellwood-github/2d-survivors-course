@@ -78,7 +78,7 @@ _data = {
 "walk": SubResource("Animation_y4uej")
 }
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_n70hk"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n5xb3"]
 resource_local_to_scene = true
 shader = ExtResource("6_txpfp")
 shader_parameter/lerp_percent = 0.0
@@ -102,7 +102,6 @@ libraries = {
 }
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_cfv7s")]
-max_health = 11.0
 
 [node name="VelocityComponent" parent="." instance=ExtResource("4_argru")]
 
@@ -113,7 +112,7 @@ health_component = NodePath("../HealthComponent")
 [node name="HitFlashComponent" parent="." node_paths=PackedStringArray("health_component", "sprite") instance=ExtResource("8_lc2rj")]
 health_component = NodePath("../HealthComponent")
 sprite = NodePath("../Visuals/Sprite2D")
-hit_flash_material = SubResource("ShaderMaterial_n70hk")
+hit_flash_material = SubResource("ShaderMaterial_n5xb3")
 
 [node name="DeathComponent" parent="." node_paths=PackedStringArray("health_component", "sprite") instance=ExtResource("4_y86rw")]
 health_component = NodePath("../HealthComponent")
@@ -123,10 +122,10 @@ sprite = NodePath("../Visuals/Sprite2D")
 streams = Array[AudioStream]([ExtResource("10_gr4om"), ExtResource("12_4k2x1"), ExtResource("13_36cbg"), ExtResource("14_bafpb"), ExtResource("15_wgshr")])
 
 [node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("4_185i6")]
+collision_layer = 64
 health_component = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
-visible = false
 position = Vector2(0, -5)
 shape = SubResource("CircleShape2D_npgdv")
 
@@ -137,6 +136,5 @@ texture = ExtResource("1_dqwmq")
 offset = Vector2(0, -4)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(0, -5)
 shape = SubResource("CircleShape2D_1880u")

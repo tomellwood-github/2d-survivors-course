@@ -8,19 +8,25 @@ var upgrade_pool: WeightedTable = WeightedTable.new()
 
 var upgrade_axe = preload("res://resources/upgardes/axe.tres")
 var upgrade_axe_damage = preload("res://resources/upgardes/axe_damage.tres")
+var upgrade_sword = preload("res://resources/upgardes/sword.tres")
 var upgrade_sword_rate = preload("res://resources/upgardes/sword_rate.tres")
 var upgrade_sword_damage = preload("res://resources/upgardes/sword_damage.tres")
 var upgrade_player_speed = preload("res://resources/upgardes/player_speed.tres")
 var upgrade_anvil = preload("res://resources/upgardes/anvil.tres")
 var upgrade_anvil_count = preload("res://resources/upgardes/anvil_count.tres")
+var upgrade_fireball_rate = preload("res://resources/upgardes/fireball_rate.tres")
+var upgrade_fireball_lifespan = preload("res://resources/upgardes/fireball_lifespan.tres")
+var upgrade_pickup_radius = preload("res://resources/upgardes/pickup_radius.tres")
 
 
 func _ready():
 	upgrade_pool.add_item(upgrade_axe, 10)
 	upgrade_pool.add_item(upgrade_anvil, 10)
-	upgrade_pool.add_item(upgrade_sword_damage, 10)
-	upgrade_pool.add_item(upgrade_sword_rate, 10)
+	upgrade_pool.add_item(upgrade_sword, 10)
+	upgrade_pool.add_item(upgrade_fireball_rate, 10)
+	upgrade_pool.add_item(upgrade_fireball_lifespan, 10)
 	upgrade_pool.add_item(upgrade_player_speed, 5)
+	upgrade_pool.add_item(upgrade_pickup_radius, 5)
 
 	experience_manager.level_up.connect(on_level_up)
 
@@ -48,6 +54,9 @@ func update_upgrade_pool(chosen_upgrade: AbilityUpgrade):
 		upgrade_pool.add_item(upgrade_axe_damage, 10)
 	if chosen_upgrade.id == upgrade_anvil.id:
 		upgrade_pool.add_item(upgrade_anvil_count, 5)
+	if chosen_upgrade.id == upgrade_sword.id:
+		upgrade_pool.add_item(upgrade_sword_damage, 10)
+		upgrade_pool.add_item(upgrade_sword_rate, 10)
 
 
 func pick_upgrades():

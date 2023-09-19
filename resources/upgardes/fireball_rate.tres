@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="AbilityUpgrade" load_steps=2 format=3 uid="uid://dejptthd0ear7"]
+
+[ext_resource type="Script" path="res://resources/upgardes/ability_upgrade.gd" id="1_vxfj0"]
+
+[resource]
+script = ExtResource("1_vxfj0")
+id = "fireball_rate"
+max_quantity = 7
+name = "Fireball Quickness"
+description = "Increases firball attack rate by 10%"

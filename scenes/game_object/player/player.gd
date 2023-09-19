@@ -12,6 +12,7 @@ var base_speed = 0
 @onready var animation_player = $AnimationPlayer
 @onready var visuals = $Visuals
 @onready var velocity_component = $VelocityComponent
+@onready var pickup_area_collision = $PickupArea2D/CollisionShape2D
 
 
 func _ready():
@@ -86,6 +87,8 @@ func on_ability_upgrade_added(ability_upgrade: AbilityUpgrade, _current_upgrades
 		abilities.add_child((ability_upgrade as Ability).ability_controller_scene.instantiate())
 	elif ability_upgrade.id == "player_speed":
 		velocity_component.max_speed = base_speed + base_speed * _current_upgrades["player_speed"]["quantity"] * 0.1
+	elif ability_upgrade.id == "pickup_radius":
+		pickup_area_collision.shape.radius += 16
 
 
 func on_arena_difficulty_increased(difficulty: int):
